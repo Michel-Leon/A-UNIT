@@ -83,7 +83,7 @@ Private Sub Workbook_BeforeClose(Cancel As Boolean)
         .DisplayVerticalScrollBar = True
     End With
     
-    On Error GoTo 0
+    On Error GoTo 0 
 End Sub
 
 ' ============================================================================
