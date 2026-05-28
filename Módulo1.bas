@@ -235,7 +235,45 @@ public sub comp_medidores()
     End With
 
 End Sub
-
+public sub restablecer_valoresMedidores()
+    dim wsOrigen as worksheet
+    set wsOrigen = ThisWorkbook.Worksheets("MD")
+    ' SECCION1
+    wsOrigen.Range("CF53").Value = "+N#"
+    wsOrigen.Range("CN53").Value = "+C#"
+    wsOrigen.Range("CB57").Value = "PM0#"
+    ' SECCION2
+    wsOrigen.Range("EF149").Value = "+N#"
+    wsOrigen.Range("EF158").Value = "+N#"
+    wsOrigen.Range("EN149").Value = "+C#"
+    wsOrigen.Range("EN158").Value = "+C#"
+    wsOrigen.Range("EV149").Value = "Q#"
+    wsOrigen.Range("FL149").Value = "12#"
+    ' SECCION3
+    wsOrigen.Range("EF129").Value = "+N#"
+    wsOrigen.Range("EN129").Value = "+C#"
+    wsOrigen.Range("EV129").Value = "ECT"
+    wsOrigen.Range("FD129").Value = "#/L"
+    wsOrigen.Range("FD133").Value = "#/N"
+    ' SECCION4
+    wsOrigen.Range("FX129").Value = "+N#"
+    wsOrigen.Range("GF129").Value = "+C#"
+    wsOrigen.Range("GN129").Value = "Q#"
+    wsOrigen.Range("GV129").Value = "+N#"
+    wsOrigen.Range("HD129").Value = "+C#"
+    wsOrigen.Range("HL129").Value = "Descripcion"
+    wsOrigen.Range("HT129").Value = "+N#"
+    wsOrigen.Range("IB129").Value = "+C#"
+    wsOrigen.Range("IJ129").Value = "Descripcion"
+    ' SECCION5
+    wsOrigen.Range("GF149").Value = "CT#"
+    wsOrigen.Range("GF153").Value = "CT#"
+    wsOrigen.Range("GF157").Value = "CT#"
+    wsOrigen.Range("GN149").Value = "+N#"
+    wsOrigen.Range("GV149").Value = "+C#"
+    wsOrigen.Range("HD149").Value = "Q#"
+    wsOrigen.Range("HT149").Value = "12#" 
+End Sub
            
 
 
