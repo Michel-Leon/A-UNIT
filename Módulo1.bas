@@ -118,69 +118,20 @@ public sub comp_medidores()
     wsDestino.Range("C42").Value = dato30
 
     '==========
-    ' CREA NUEVO LIBRO
+    ' CREA NUEVO LIBRO (solo hoja COMP)
     '==========
 
     Dim wbNuevo As Workbook
-    Dim wsNuevaMD As Worksheet
     Dim wsCompNuevo As Worksheet
-    Dim rngAreaImpresion As Range
-    Dim strAreaImpresion As String
     Dim rutaGuardado As String
-    Dim rangoValores As Range
-    Dim filaOffset As Long, colOffset As Long
-    Dim celdaInicioDestino As Range
 
-    ' Verificar área de impresión
-    strAreaImpresion = wsOrigen.PageSetup.PrintArea
-
-    If strAreaImpresion = "" Then
-        MsgBox "La hoja MD no tiene área de impresión definida.", vbExclamation
-        Exit Sub
-    End If
-
-    Set rngAreaImpresion = wsOrigen.Range(strAreaImpresion)
-
-    ' Crear nuevo libro con 1 sola hoja
-    Set wbNuevo = Workbooks.Add(xlWBATWorksheet)
-    Set wsNuevaMD = wbNuevo.Sheets(1)
-    wsNuevaMD.Name = "MD"
-
-    ' --- Paso 1: Copiar área de impresión completa (formato + valores + todo) ---
-    rngAreaImpresion.Copy
-    wsNuevaMD.Range("A1").PasteSpecial xlPasteAll
-    Application.CutCopyMode = False
-
-    ' --- Paso 2: Convertir HL105 a valor neto ---
-    Dim filaHL As Long, colHL As Long
-    filaHL = wsOrigen.Range("HL105").Row - rngAreaImpresion.Row
-    colHL = wsOrigen.Range("HL105").Column - rngAreaImpresion.Column
-    wsNuevaMD.Cells(1 + filaHL, 1 + colHL).Value = wsOrigen.Range("HL105").Value
-
-    ' --- Paso 3: Configurar tamaño de celdas MD ---
-    wsNuevaMD.Cells.ColumnWidth = 0.38
-    wsNuevaMD.Cells.RowHeight = 3.6
-
-    ' --- Paso 4: Configurar página MD ---
-    With wsNuevaMD.PageSetup
-        .PrintArea = wsNuevaMD.Range("A1").Resize( _
-            rngAreaImpresion.Rows.Count, rngAreaImpresion.Columns.Count).Address
-        .Orientation = xlLandscape
-        .LeftMargin = Application.CentimetersToPoints(0)
-        .RightMargin = Application.CentimetersToPoints(0)
-        .TopMargin = Application.CentimetersToPoints(0)
-        .BottomMargin = Application.CentimetersToPoints(0)
-        .CenterHorizontally = True
-        .CenterVertically = True
-        .Zoom = 100
-    End With
-
-    ' --- HOJA 2: COMP (copia de COMP_Medidores) ---
-    wsDestino.Copy After:=wbNuevo.Sheets(wbNuevo.Sheets.Count)
-    Set wsCompNuevo = wbNuevo.Sheets(wbNuevo.Sheets.Count)
+    ' Copiar hoja COMP_Medidores a un nuevo libro
+    wsDestino.Copy
+    Set wbNuevo = ActiveWorkbook
+    Set wsCompNuevo = wbNuevo.Sheets(1)
     wsCompNuevo.Name = "COMP"
 
-    ' Convertir fórmulas a valores en COMP
+    ' Convertir fórmulas a valores
     Dim celdaComp As Range
     For Each celdaComp In wsCompNuevo.UsedRange
         On Error Resume Next
@@ -190,43 +141,30 @@ public sub comp_medidores()
         On Error GoTo 0
     Next celdaComp
 
-    ' Eliminar hojas extra
-    Dim ws As Worksheet
-    Application.DisplayAlerts = False
-    For Each ws In wbNuevo.Sheets
-        If ws.Name <> "MD" And ws.Name <> "COMP" Then
-            ws.Delete
-        End If
-    Next ws
-    Application.DisplayAlerts = True
-
-   ' --- Guardar con diálogo ---
+    ' --- Guardar con diálogo ---
     Dim fd As FileDialog
     Set fd = Application.FileDialog(msoFileDialogSaveAs)
-    
+
     With fd
         .Title = "Guardar libro de medidores"
-        .InitialFileName = "COMP_Medidores_" & Format(Now, "YYYYMMDD_HHMMSS") & ".xls"
-        
-        ' Forzar filtro a Excel 97-2003
-        .FilterIndex = 2  ' Índice del filtro .xls en la lista
-        
+        .InitialFileName = "COMP_Medidores_" & Format(Now, "YYYY-MM-DD") & ".xls"
+        .FilterIndex = 2
+
         If .Show = -1 Then
             rutaGuardado = .SelectedItems(1)
-            
-            ' Asegurar extensión .xls
+
             If Right(rutaGuardado, 4) <> ".xls" Then
                 rutaGuardado = Replace(rutaGuardado, ".xlsx", ".xls")
                 If Right(rutaGuardado, 4) <> ".xls" Then
                     rutaGuardado = rutaGuardado & ".xls"
                 End If
             End If
-            
+
             wbNuevo.CheckCompatibility = False
             Application.DisplayAlerts = False
             wbNuevo.SaveAs rutaGuardado, FileFormat:=xlExcel8
             Application.DisplayAlerts = True
-            
+
             MsgBox "Proceso finalizado." & vbNewLine & _
                    "Archivo guardado en:" & vbNewLine & rutaGuardado
         Else
@@ -275,5 +213,4 @@ public sub restablecer_valoresMedidores()
     wsOrigen.Range("HT149").Value = "12#" 
 End Sub
            
-
 
