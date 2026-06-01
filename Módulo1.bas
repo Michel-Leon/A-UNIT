@@ -4,15 +4,25 @@ public sub comp_medidores()
     dim wsDestino as worksheet
     set wsOrigen = ThisWorkbook.Worksheets("MD")
     set wsDestino = ThisWorkbook.Worksheets("COMP_Medidores")
+    '==========
+    'Validar que los codigos permitidos son correctos
+    '==========
+    Dim codigosValidos As String
+    codigosValidos = CStr(wsOrigen.Range("HL105").Value)
+
+    If codigosValidos <> "080602" And codigosValidos <> "080604" Then
+        MsgBox "No existe archivo maestro para ese codigo de plano", vbExclamation, "Error de validación"
+        Exit Sub
+    End If
 
     'tomar valores de celdas específicas para cada seccion
     '=========
     ' SECCION1
     '=========
     Dim dato1 as string, dato2 as string, dato3 as string
-    dato1 = wsOrigen.Range("CF53").Value '+N
-    dato2 = wsOrigen.Range("CN53").Value '+C
-    dato3 = wsOrigen.Range("CB57").Value ' Tag del medidor
+    dato1 = wsOrigen.Range("CH53").Value '+N
+    dato2 = wsOrigen.Range("CP53").Value '+C
+    dato3 = wsOrigen.Range("CH57").Value ' Tag del medidor
     '=========
     ' SECCION2
     '=========
@@ -177,20 +187,20 @@ public sub restablecer_valoresMedidores()
     dim wsOrigen as worksheet
     set wsOrigen = ThisWorkbook.Worksheets("MD")
     ' SECCION1
-    wsOrigen.Range("CF53").Value = "+N#"
-    wsOrigen.Range("CN53").Value = "+C#"
-    wsOrigen.Range("CB57").Value = "PM0#"
+    wsOrigen.Range("CH53").Value = "+N#"
+    wsOrigen.Range("CP53").Value = "+C#"
+    wsOrigen.Range("CH57").Value = "PM0#"
     ' SECCION2
     wsOrigen.Range("EF149").Value = "+N#"
     wsOrigen.Range("EF158").Value = "+N#"
     wsOrigen.Range("EN149").Value = "+C#"
     wsOrigen.Range("EN158").Value = "+C#"
     wsOrigen.Range("EV149").Value = "Q#"
-    wsOrigen.Range("FL149").Value = "12#"
+    wsOrigen.Range("FL149").Value = "18#"
     ' SECCION3
     wsOrigen.Range("EF129").Value = "+N#"
     wsOrigen.Range("EN129").Value = "+C#"
-    wsOrigen.Range("EV129").Value = "ECT"
+    wsOrigen.Range("EV129").Value = "ECCT"
     wsOrigen.Range("FD129").Value = "#/L"
     wsOrigen.Range("FD133").Value = "#/N"
     ' SECCION4
@@ -210,7 +220,7 @@ public sub restablecer_valoresMedidores()
     wsOrigen.Range("GN149").Value = "+N#"
     wsOrigen.Range("GV149").Value = "+C#"
     wsOrigen.Range("HD149").Value = "Q#"
-    wsOrigen.Range("HT149").Value = "12#" 
+    wsOrigen.Range("HT149").Value = "14#" 
 End Sub
            
 
