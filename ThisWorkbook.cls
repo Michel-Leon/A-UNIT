@@ -9,10 +9,10 @@ Dim hojaAnterior As String
 Private Sub Workbook_Open()
     Dim ws As Worksheet
     
-    OcultarTodasLasHojas
+   ' OcultarTodasLasHojas
     MostrarHojaInicio
     ConfigurarInterfaz
-    MostrarFormularioInicio
+    'MostrarFormularioInicio
     
 End Sub
 

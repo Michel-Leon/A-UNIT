@@ -1,4 +1,9 @@
 Attribute VB_Name = "M�dulo1"
+'==========================================
+Public Codigoresultado as string
+public celda as string
+Public wsActual As Worksheet
+'==========================================
 public sub comp_medidores()
     dim wsOrigen as worksheet
     dim wsDestino as worksheet
@@ -26,48 +31,48 @@ public sub comp_medidores()
     '=========
     ' SECCION2
     '=========
-    Dim dato4 as string, dato5 as string, dato6 as string, dato7 as string, dato8 as string, dato9 as string
-    dato4 = wsOrigen.Range("EF149").Value 'origen ubicacion columna x7-p2 (1-3)
-    dato5 = wsOrigen.Range("EF158").Value 'origen ubicacion cubiculo x7-p2 (1-3)
-    dato6 = wsOrigen.Range("EN149").Value 'origen ubicacion cubiculo x7-p2 (4)
-    dato7 = wsOrigen.Range("EN158").Value 'origen alimentacion Tag x7-p2 (1-3)
-    dato8 = wsOrigen.Range("EV149").Value ' conductor  AWG x7-p2 (1-4) 
-    dato9 = wsOrigen.Range("FL149").Value ' Punto x7-p2 (1-4)
+        Dim dato4 as string, dato5 as string, dato6 as string, dato7 as string, dato8 as string, dato9 as string
+        dato4 = wsOrigen.Range("EF149").Value 'origen ubicacion columna x7-p2 (1-3)
+        dato5 = wsOrigen.Range("EF158").Value 'origen ubicacion cubiculo x7-p2 (1-3)
+        dato6 = wsOrigen.Range("EN149").Value 'origen ubicacion cubiculo x7-p2 (4)
+        dato7 = wsOrigen.Range("EN158").Value 'origen alimentacion Tag x7-p2 (1-3)
+        dato8 = wsOrigen.Range("EV149").Value ' conductor  AWG x7-p2 (1-4) 
+        dato9 = wsOrigen.Range("FL149").Value ' Punto x7-p2 (1-4)
     '=========
     ' SECCION3
     '=========
-    Dim dato10 as string, dato11 as string, dato12 as string, dato13 as string, dato14 as string
-    dato10 = wsOrigen.Range("EF129").Value 'origen ubicacion columna x7-p1 (1)
-    dato11 = wsOrigen.Range("EN129").Value 'origen ubicacion cUBICULO x7-p1 (2)
-    dato12 = wsOrigen.Range("EV129").Value 'origen alimentacion Tag x7-p1 (1-2)
-    dato13 = wsOrigen.Range("FD129").Value ' Punto x7-p1 (1)
-    dato14 = wsOrigen.Range("FD133").Value ' Punto x7-p1 (2)
+        Dim dato10 as string, dato11 as string, dato12 as string, dato13 as string, dato14 as string
+        dato10 = wsOrigen.Range("EF129").Value 'origen ubicacion columna x7-p1 (1)
+        dato11 = wsOrigen.Range("EN129").Value 'origen ubicacion cUBICULO x7-p1 (2)
+        dato12 = wsOrigen.Range("EV129").Value 'origen alimentacion Tag x7-p1 (1-2)
+        dato13 = wsOrigen.Range("FD129").Value ' Punto x7-p1 (1)
+        dato14 = wsOrigen.Range("FD133").Value ' Punto x7-p1 (2)
     '=========
     ' SECCION4
     '=========
-    Dim dato15 as string, dato16 as string, dato17 as string, dato18 as string, dato19 as string
-    dim dato20 as string, dato21 as string, dato22 as string, dato23 as string
-    dato15 = wsOrigen.Range("FX129").Value 'Datos del interruptor columna 
-    dato16 = wsOrigen.Range("GF129").Value 'Datos del interruptor cubiculo
-    dato17 = wsOrigen.Range("GN129").Value 'Datos del interruptor tag
-    dato18 = wsOrigen.Range("GV129").Value 'Datos CONEXION alimentacion columna
-    dato19 = wsOrigen.Range("HD129").Value 'Datos CONEXION alimentacion cubiculo
-    dato20 = wsOrigen.Range("HL129").Value 'Datos CONEXION alimentacion viene de
-    dato21 = wsOrigen.Range("HT129").Value 'Datos CONEXION alimentacion columna viene de
-    dato22 = wsOrigen.Range("IB129").Value 'Datos CONEXION alimentacion cubiculo viene de
-    dato23 = wsOrigen.Range("IJ129").Value 'Datos CONEXION alimentacion tag viene va
+        Dim dato15 as string, dato16 as string, dato17 as string, dato18 as string, dato19 as string
+        dim dato20 as string, dato21 as string, dato22 as string, dato23 as string
+        dato15 = wsOrigen.Range("FX129").Value 'Datos del interruptor columna 
+        dato16 = wsOrigen.Range("GF129").Value 'Datos del interruptor cubiculo
+        dato17 = wsOrigen.Range("GN129").Value 'Datos del interruptor tag
+        dato18 = wsOrigen.Range("GV129").Value 'Datos CONEXION alimentacion columna
+        dato19 = wsOrigen.Range("HD129").Value 'Datos CONEXION alimentacion cubiculo
+        dato20 = wsOrigen.Range("HL129").Value 'Datos CONEXION alimentacion viene de
+        dato21 = wsOrigen.Range("HT129").Value 'Datos CONEXION alimentacion columna viene de
+        dato22 = wsOrigen.Range("IB129").Value 'Datos CONEXION alimentacion cubiculo viene de
+        dato23 = wsOrigen.Range("IJ129").Value 'Datos CONEXION alimentacion tag viene va
     '=========
     ' SECCION5
     '=========
-    Dim dato24 as string, dato25 as string, dato26 as string, dato27 as string, dato28 as string, dato29 as string
-    Dim dato30 as string
-    dato24 = wsOrigen.Range("GF149").Value 'Puntos de conexion serv. corriente
-    dato25 = wsOrigen.Range("GF153").Value 'Puntos de conexion serv. corriente
-    dato26 = wsOrigen.Range("GF157").Value 'Puntos de conexion serv. corriente
-    dato27 = wsOrigen.Range("GN149").Value 'origen ubicacion columna
-    dato28 = wsOrigen.Range("GV149").Value 'origen ubicacion cubiculo
-    dato29 = wsOrigen.Range("HD149").Value 'origen ubicacion tag
-    dato30 = wsOrigen.Range("HT149").Value 'Conductor AWG
+        Dim dato24 as string, dato25 as string, dato26 as string, dato27 as string, dato28 as string, dato29 as string
+        Dim dato30 as string
+        dato24 = wsOrigen.Range("GF149").Value 'Puntos de conexion serv. corriente
+        dato25 = wsOrigen.Range("GF153").Value 'Puntos de conexion serv. corriente
+        dato26 = wsOrigen.Range("GF157").Value 'Puntos de conexion serv. corriente
+        dato27 = wsOrigen.Range("GN149").Value 'origen ubicacion columna
+        dato28 = wsOrigen.Range("GV149").Value 'origen ubicacion cubiculo
+        dato29 = wsOrigen.Range("HD149").Value 'origen ubicacion tag
+        dato30 = wsOrigen.Range("HT149").Value 'Conductor AWG
 
     'CORROBORAR OBTENCION DE INFORMACION
     'MsgBox "Datos obtenidos: " & vbNewLine & _
@@ -130,17 +135,14 @@ public sub comp_medidores()
     '==========
     ' CREA NUEVO LIBRO (solo hoja COMP)
     '==========
-
     Dim wbNuevo As Workbook
     Dim wsCompNuevo As Worksheet
     Dim rutaGuardado As String
-
     ' Copiar hoja COMP_Medidores a un nuevo libro
     wsDestino.Copy
     Set wbNuevo = ActiveWorkbook
     Set wsCompNuevo = wbNuevo.Sheets(1)
     wsCompNuevo.Name = "COMP"
-
     ' Convertir fórmulas a valores
     Dim celdaComp As Range
     For Each celdaComp In wsCompNuevo.UsedRange
@@ -154,12 +156,10 @@ public sub comp_medidores()
     ' --- Guardar con diálogo ---
     Dim fd As FileDialog
     Set fd = Application.FileDialog(msoFileDialogSaveAs)
-
     With fd
         .Title = "Guardar libro de medidores"
         .InitialFileName = "COMP_Medidores_" & Format(Now, "YYYY-MM-DD") & ".xls"
         .FilterIndex = 2
-
         If .Show = -1 Then
             rutaGuardado = .SelectedItems(1)
 
@@ -169,7 +169,6 @@ public sub comp_medidores()
                     rutaGuardado = rutaGuardado & ".xls"
                 End If
             End If
-
             wbNuevo.CheckCompatibility = False
             Application.DisplayAlerts = False
             wbNuevo.SaveAs rutaGuardado, FileFormat:=xlExcel8
@@ -181,7 +180,6 @@ public sub comp_medidores()
             MsgBox "Guardado cancelado. El libro sigue abierto sin guardar.", vbInformation
         End If
     End With
-
 End Sub
 public sub restablecer_valoresMedidores()
     dim wsOrigen as worksheet
@@ -222,5 +220,46 @@ public sub restablecer_valoresMedidores()
     wsOrigen.Range("HD149").Value = "Q#"
     wsOrigen.Range("HT149").Value = "14#" 
 End Sub
-           
+
+Public Sub MoverBloque(ByVal ref As String, ByVal BD As String, _
+                       ByVal wsDestino As Worksheet, ByVal celdaDestino As String)
+
+    Dim origen As Range, destino As Range, wsDatos As Worksheet
+
+    On Error GoTo errHandler
+
+    Set wsDatos = ThisWorkbook.Sheets(BD)
+    Set origen = wsDatos.Range(ref)
+    Set destino = wsDestino.Range(celdaDestino)
+
+    origen.Copy Destination:=destino
+    wsActual.Range(destino, destino.Offset(origen.Rows.Count - 1, origen.Columns.Count - 1)).Select
+    Exit Sub
+
+    errHandler:
+        MsgBox "Fallo al mover el bloque." & vbCrLf & _
+            "Ref: " & ref & vbCrLf & _
+            "BD: " & BD & vbCrLf & _
+            "Destino: " & celdaDestino & vbCrLf & vbCrLf & _
+            "Error " & Err.Number & ": " & Err.Description, vbCritical
+End Sub
+Private Function ResolverBloque(ByVal nombre As String) As Range
+    Dim n As Name
+    On Error Resume Next
+
+    ' 1) Nombre global
+    Set ResolverBloque = ThisWorkbook.Names(nombre).RefersToRange
+    If Not ResolverBloque Is Nothing Then Exit Function
+    Err.Clear
+
+    ' 2) Nombre local en cualquier hoja
+    Dim ws As Worksheet
+    For Each ws In ThisWorkbook.Worksheets
+        Set ResolverBloque = ws.Names(nombre).RefersToRange
+        If Not ResolverBloque Is Nothing Then Exit Function
+        Err.Clear
+    Next ws
+
+    On Error GoTo 0
+End Function
 
