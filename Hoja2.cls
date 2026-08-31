@@ -17,7 +17,7 @@ Public sub Bloqueo()
     Me.OleObjects("N_4").object.Enabled = False
     Me.OleObjects("N_5").object.Enabled = False
     Me.OleObjects("N_6").object.Enabled = False
-    Me.OleObjects("N_7").object.Enabled = False
+    Me.OleObjects("AWG_6").object.Enabled = False
     Me.OleObjects("N_8").object.Enabled = False
     Me.OleObjects("C_1").object.Enabled = False
     Me.OleObjects("C_2").object.Enabled = False
@@ -26,13 +26,12 @@ Public sub Bloqueo()
     Me.OleObjects("C_5").object.Enabled = False
     Me.OleObjects("C_6").object.Enabled = False
     Me.OleObjects("C_7").object.Enabled = False
-    Me.OleObjects("C_8").object.Enabled = False
+    Me.OleObjects("AWG_4").object.Enabled = False
     Me.OleObjects("QT_1").object.Enabled = False
-    Me.OleObjects("CordenadasMD").object.Enabled = False
-    Me.OleObjects("CordenadasMD").object.value = "+N# / +C#"
     Me.OleObjects("CT_1").object.Enabled = False
     Me.OleObjects("CT_2").object.Enabled = False
     Me.OleObjects("CT_3").object.Enabled = False
+    Me.OleObjects("TAG_BARRA").object.Enabled = False
 end sub
 Public sub Desbloqueo()
     Me.OleObjects("N_1").object.Enabled = True
@@ -42,7 +41,7 @@ Public sub Desbloqueo()
     Me.OleObjects("N_5").object.Enabled = True
     Me.OleObjects("N_6").object.Enabled = True
     Me.OleObjects("N_7").object.Enabled = True
-    Me.OleObjects("N_8").object.Enabled = True
+    Me.OleObjects("AWG_4").object.Enabled = True
     Me.OleObjects("C_1").object.Enabled = True
     Me.OleObjects("C_2").object.Enabled = True
     Me.OleObjects("C_3").object.Enabled = True
@@ -50,13 +49,21 @@ Public sub Desbloqueo()
     Me.OleObjects("C_5").object.Enabled = True
     Me.OleObjects("C_6").object.Enabled = True
     Me.OleObjects("C_7").object.Enabled = True
-    Me.OleObjects("C_8").object.Enabled = True
+    Me.OleObjects("AWG_6").object.Enabled = True
     Me.OleObjects("QT_1").object.Enabled = True    
-    Me.OleObjects("CordenadasMD").object.Enabled = True
     Me.OleObjects("CT_1").object.Enabled = True
     Me.OleObjects("CT_2").object.Enabled = True
     Me.OleObjects("CT_3").object.Enabled = True
+    Me.OleObjects("TAG_BARRA").object.Enabled = True
+    TAG
 end sub
+PUblic sub TAG()
+    WITH Me.OleObjects("TAG_BARRA").object
+        .clear
+        .AddItem "VBB"
+        .AddItem "HBB"
+    End With
+End sub
 
 Public sub Medidores()
     '----------------------------------------------
@@ -86,7 +93,7 @@ public sub comp_medidores()
     dim dato9 as string, dato10 as string, dato11 as string, dato12 as string
     dim dato13 as string, dato14 as string, dato15 as string, dato16 as string
     dim dato17 as string, dato18 as string, dato19 as string, dato20 as string
-    dim dato21 as string
+    dim dato21 as string, dato22 as string
     '===========================================================================
     'RECOLEXION DE DATOS
     '===========================================================================
@@ -98,36 +105,50 @@ public sub comp_medidores()
     dato6 = Me.OleObjects("C_3").object
     dato7 = Me.OleObjects("N_4").object
     dato8 = Me.OleObjects("C_4").object
+    dato15 = Me.OleObjects("AWG_4").object
     dato9 = Me.OleObjects("N_5").object
     dato10 = Me.OleObjects("C_5").object
     dato11 = Me.OleObjects("N_6").object
     dato12 = Me.OleObjects("C_6").object
+    dato16 = Me.OleObjects("AWG_6").object
     dato13 = Me.OleObjects("N_7").object
     dato14 = Me.OleObjects("C_7").object
-    dato15 = Me.OleObjects("N_8").object
-    dato16 = Me.OleObjects("C_8").object
     dato17 = Me.OleObjects("QT_1").object
-    dato18 = Me.OleObjects("CordenadasMD").object
+    dato18 = Me.OleObjects("TAG_BARRA").object
     dato19 = Me.OleObjects("CT_1").object
     dato20 = Me.OleObjects("CT_2").object
     dato21 = Me.OleObjects("CT_3").object
+    dato22 = Me.OleObjects("PM_1").object
     '===========================================================================
     'ESCRITURA DE DATOS
     '===========================================================================
-    wsDestino.Range("C2").Value = dato19
-    wsDestino.Range("C3").Value = dato20
-    wsDestino.Range("C4").Value = dato21
-    wsDestino.Range("B16").Value = dato4
-    wsDestino.Range("B17").Value = dato5
-    wsDestino.Range("B18").Value = dato6
-    wsDestino.Range("B19").Value = dato7
-    wsDestino.Range("B20").Value = dato8
-    wsDestino.Range("B21").Value = dato9
-    wsDestino.Range("B22").Value = dato10
-    wsDestino.Range("B23").Value = dato11
-    wsDestino.Range("B24").Value = dato12
-    wsDestino.Range("B25").Value = dato13
-    wsDestino.Range("B26").Value = dato14
+    'CT'S
+        wsDestino.Range("C2").Value = dato19
+        wsDestino.Range("C3").Value = dato20
+        wsDestino.Range("C4").Value = dato21
+        wsDestino.Range("C16").Value = dato19
+        wsDestino.Range("C17").Value = dato20
+        wsDestino.Range("C18").Value = dato21
+    ' TAG INTERUPTOR TOTALIZADOR
+        wsDestino.Range("C6").Value = dato17
+        wsDestino.Range("C11").Value = dato17
+        wsDestino.Range("C25").Value = dato17
+        wsDestino.Range("C28").Value = dato17
+        ' CORDENADAS INTERRUPTOR TOTALIZADOR
+            wsDestino.Range("C21").Value = dato5
+            wsDestino.Range("C22").Value = dato6
+    'MEDIDOR
+        wsDestino.Range("C7").Value = dato22
+        wsDestino.Range("C8").Value = dato22
+        wsDestino.Range("C10").Value = dato22
+        wsDestino.Range("C31").Value = dato22
+    'ACOMETIDA
+        wsDestino.Range("C17").Value = dato1
+        wsDestino.Range("C18").Value = dato2
+    ' VBB   
+        wsDestino.Range("C16").Value = dato18 
+        wsDestino.Range("C19").Value = dato3
+        wsDestino.Range("C20").Value = dato4
 END SUB    
 
 
