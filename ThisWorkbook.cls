@@ -36,9 +36,9 @@ Private Sub Workbook_SheetFollowHyperlink(ByVal Sh As Object, ByVal Target As Hy
         .Activate
     End With
     
-    ' Ocultar hoja anterior SOLO si no es INICIO ni COMP_Medidores
+    ' Ocultar hoja anterior SOLO si no es LOGIN ni COMP_Medidores
     If hojaAnterior <> nombreHoja And hojaAnterior <> "" Then
-        If hojaAnterior <> "INICIO" And hojaAnterior <> "COMP_Medidores" Then
+        If hojaAnterior <> "LOGIN" And hojaAnterior <> "COMP_Medidores" Then
             On Error Resume Next
             Sheets(hojaAnterior).Visible = xlSheetVeryHidden
             On Error GoTo 0
@@ -98,14 +98,14 @@ Private Sub OcultarTodasLasHojas()
     
     For Each ws In ThisWorkbook.Worksheets
         ' NO ocultar INICIO ni COMP_Medidores
-        If ws.Name <> "INICIO" And ws.Name <> "COMP_Medidores" Then
+        If ws.Name <> "LOGIN" And ws.Name <> "COMP_Medidores" Then
             ws.Visible = xlSheetVeryHidden
         End If
     Next ws
 End Sub
 
 Private Sub MostrarHojaInicio()
-    With Sheets("INICIO")
+    With Sheets("LOGIN")
         .Visible = xlSheetVisible
         .Activate
     End With
@@ -115,7 +115,7 @@ Private Sub MostrarHojaInicio()
         Sheets("COMP_Medidores").Visible = xlSheetVisible
     End If
     
-    hojaAnterior = "INICIO"
+    hojaAnterior = "LOGIN"
 End Sub
 
 Private Sub ConfigurarInterfaz()
